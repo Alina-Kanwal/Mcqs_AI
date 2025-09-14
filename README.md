@@ -19,6 +19,36 @@ steps / turns info → agar detailed tracking on ho
 kabhi kabhi metadata (jaise timings, tokens etc.)
 RunHooks = “listener functions” jo run k dauran chalty hain.
 RunResult = “final report” jo run complete hone k baad milti hai.
+RunResult → final result at the end.
+RunResultStreaming → result milta hai stream k form me, step-by-step / token-by-token.
+FunctionTool se bhi wahi kaam hoga jo @function_tool decorator se hota tha, bs yahan tu manual control le rahi hai. FunctionTool my hum function ko tool bagair decorator lagaye banaty hain.
+🔹FunctionTool
+jab tu koi FunctionTool run krti hai, uska output wrap ho k aata hai FunctionToolRes..
+isme hota hai:
+tool ka naam
+inputs jo diye gaye the
+output jo tool ne return kia
+🔹 ComputerTool
+ye OpenAI ka ek hosted tool hai.
+isse tu computer actions krwa skti hai jaisy:
+file banana / read karna
+screenshot lena
+apps open karna
+🔹 CodeInterpreterTool
+ye bhi ek OpenAI hosted tool hai.
+ye LLM ko ek Python execution environment deta hai.
+jahan wo code likh k run kr skta hai:
+data analysis
+graph banana
+calculations
+file processing
+FunctionToolResult → tool ke run hone ka nateeja (result container).
+ComputerTool → LLM ko ek computer environment deta hai.
+CodeInterpreterTool → LLM ko Python run krne ka environment deta hai.
+
+
+
+
 
 
 
