@@ -10,4 +10,15 @@ Agar model 2nd turn pe bhi final answer nahi deta (sirf aur question poochta reh
 By default SDK agents me max_turns = 5 hota hai.
 AgentOutputSchemaBase → skeleton / base.
 AgentOutputSchema → asli output jo agent deta hai
+RunHooks = basically RunHooks ka kaam hai: monitor, log, ya react krna run k har major event pe. ye wo hooks hain jo poory run (execution) k level pr lgty hain — jab tu Runner.run(...) chalati hai. inko use krky tu run ki lifecycle k events pakar skti hai.
+RunResult =ye ek object hai jo Runner.run(...) k end me return hota hai. isme final outcome hota hai run ka.
+normally isme hota hai:
+output → jo final LLM / agent ne jawab dia
+status → success, error, ya terminated
+steps / turns info → agar detailed tracking on ho
+kabhi kabhi metadata (jaise timings, tokens etc.)
+RunHooks = “listener functions” jo run k dauran chalty hain.
+RunResult = “final report” jo run complete hone k baad milti hai.
+
+
 
