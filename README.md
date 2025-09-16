@@ -64,6 +64,35 @@ ye ek function ya filter hota hai jo decide karta hai ke:
 "kya ye user input handoff hona chahiye ya nahi?"
 HandoffInputData → jo input data handoff ke saath transfer hota hai.
 HandoffInputFilter → ek filter function jo decide karta hai input handoff ke laayak hai ya nahi.
+🔹 InputGuardrailResult
+jab user ka input guardrail se guzarta hai, uska result isi object me wrap hota hai.
+input allowed hai ya blocked, agar blocked hai to kya reason hai , aur agent ko kya fallback message dena chahiye.
+🔹 OutputGuardrailResult
+jab LLM apna jawab banata hai, wo guardrail check hota hai aur uska result isi object me hota hai.
+output pass hua ya fail, agar fail hua to kya karna hai (block/modify/replace), aur agent ko kya final safe output bhejna hai.
+🔹 OpenAIChatCompletionsModel
+ye ek wrapper class hai jo OpenAI ke chat completions endpoint ko use karne ke liye hoti hai.
+yani agar aapko "gpt-4.1" ya "gpt-4o-mini" se baat karni hai chat style me, to ye use hota hai.
+🔹 OpenAIResponsesModel
+ye OpenAI ke Responses API ko handle karta hai (jo new aur advanced API hai).
+ye sirf chat nahi, balki text, structured outputs, tool calls sab ko support karta hai. Ye zada flexible hota hy.
+🔹 OpenAIProvider
+ye ModelProvider ki tarah hai lekin specifically OpenAI ke liye., ab agent ko run karte ho aur use kehte ho provider="openai", to wo OpenAIProvider use karega.
+🔹 RunItemStreamEvent
+ab jab Runner chal raha hota hai, to wo different steps / items bana ke rakhta hai:
+ek item ho sakta hai → LLM ka ek partial jawab
+doosra item ho sakta hai → koi tool call jo LLM ne invoke kiya
+teesra item → us tool ka result
+jab bhi koi aisa naya item create hota hai ya update hota hai, us waqt ek RunItemStreamEvent trigger hota hai.
+🔹 AgentUpdatedStreamEvent
+agent ka plan change hua, koi naye tools enable huye, agent ne naya instruction bana liya.
+
+
+
+
+
+
+
 
 
 
