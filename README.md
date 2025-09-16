@@ -78,6 +78,8 @@ ye OpenAI ke Responses API ko handle karta hai (jo new aur advanced API hai).
 ye sirf chat nahi, balki text, structured outputs, tool calls sab ko support karta hai. Ye zada flexible hota hy.
 🔹 OpenAIProvider
 ye ModelProvider ki tarah hai lekin specifically OpenAI ke liye., ab agent ko run karte ho aur use kehte ho provider="openai", to wo OpenAIProvider use karega.
+🔹 RunItem -> 
+ab jab Runner chal raha hota hai, to wo different steps / items bana ke rakhta hai aik item RunItem.
 🔹 RunItemStreamEvent
 ab jab Runner chal raha hota hai, to wo different steps / items bana ke rakhta hai:
 ek item ho sakta hai → LLM ka ek partial jawab
@@ -86,6 +88,20 @@ teesra item → us tool ka result
 jab bhi koi aisa naya item create hota hai ya update hota hai, us waqt ek RunItemStreamEvent trigger hota hai.
 🔹 AgentUpdatedStreamEvent
 agent ka plan change hua, koi naye tools enable huye, agent ne naya instruction bana liya.
+🔹 TResponseInputItem → input side (jo agent ko diya jaata hai, user-prompt bhi isme aata hai).
+🔹 MessageOutputItem → output side (jo agent user ko wapas bhejta hai).
+🔹 ModelResponse
+Ye represent karta hai LLM ka raw jawab Yani obj structure(OpenAI, Anthropic, ya jo bhi model use ho raha hai).
+Isme tokens, reasoning trace, aur completion text waghera hota hai..
+🔹 HandoffCallItem
+Ye ek special type ka RunItem hai jo tab banta hai jab agent decide karta hai ke request kisi aur agent ko forward karni hai.
+Isme info hoti hai kis agent/service ko handoff karna hai.
+🔹 HandoffOutputItem ki role
+HandoffOutputItem sirf ek martaba nahi, balki multiple handoffs ke liye bhi use hota hai.
+Agar pehle agent ne request ko second agent ko forward kiya, aur
+Second agent ne process karte waqt dekha ke actually ye kaam third agent ka hai,
+👉 To second agent phir se ek naya HandoffOutputItem bhejega.
+
 
 
 
