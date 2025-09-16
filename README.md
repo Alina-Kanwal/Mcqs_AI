@@ -45,6 +45,27 @@ file processing
 FunctionToolResult → tool ke run hone ka nateeja (result container).
 ComputerTool → LLM ko ek computer environment deta hai.
 CodeInterpreterTool → LLM ko Python run krne ka environment deta hai.
+🔹 ImageGenerationTool
+iska kaam hai text se image generate krna (text-to-image), jab LLM ko kahoge “make an image of a cat on the moon” → ye tool use hoga aur image return karega.
+🔹 LocalShellTool
+LocalShellTool ka matlab hai ke tu LLM ko apne system ke terminal/shell ka access de rahi. mtlb ls, pwd, echo hello jesi commands run krwa skta hai.
+🔹 LocalShellCommandRequest
+ye ek request object hota hai jo LLM bhejta hai jab usay koi shell command chalani hoti hai.
+ye request LocalShellTool ko pass hota hai
+LocalShellTool apna LocalShellExecutor use karta hai
+LocalShellExecutor actually system ke terminal/shell me command run karta hai
+output result wapis LLM ko bhej diya jata hai.
+LLM → LocalShellCommandRequest → LocalShellTool → LocalShellExecutor → System Shell → Output → back to LLM
+🔹 HandoffInputData
+ye ek data object hota hai jo handoff ke waqt user ka input aur agent ka context(agent ko di gai info) carry karta hai.
+👉 matlab jab ek agent query doosre agent ko handoff karta hai → to ye HandoffInputData ke form me transfer hoti hai.
+🔹 HandoffInputFilter
+ye ek function ya filter hota hai jo decide karta hai ke:
+"kya ye user input handoff hona chahiye ya nahi?"
+HandoffInputData → jo input data handoff ke saath transfer hota hai.
+HandoffInputFilter → ek filter function jo decide karta hai input handoff ke laayak hai ya nahi.
+
+
 
 
 
