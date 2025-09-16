@@ -93,6 +93,7 @@ agent ka plan change hua, koi naye tools enable huye, agent ne naya instruction 
 🔹 ModelResponse
 Ye represent karta hai LLM ka raw jawab Yani obj structure(OpenAI, Anthropic, ya jo bhi model use ho raha hai).
 Isme tokens, reasoning trace, aur completion text waghera hota hai..
+------------------------------------------------------------------------------Items and Data Structures
 🔹 HandoffCallItem
 Ye ek special type ka RunItem hai jo tab banta hai jab agent decide karta hai ke request kisi aur agent ko forward karni hai.
 Isme info hoti hai kis agent/service ko handoff karna hai.
@@ -101,6 +102,18 @@ HandoffOutputItem sirf ek martaba nahi, balki multiple handoffs ke liye bhi use 
 Agar pehle agent ne request ko second agent ko forward kiya, aur
 Second agent ne process karte waqt dekha ke actually ye kaam third agent ka hai,
 👉 To second agent phir se ek naya HandoffOutputItem bhejega.
+HandoffOutputItem → action (handoff perform karna).
+HandoffCallItem → record (handoff action ka log maintain karna).
+🔹 ToolCallItem
+Ye ek RunItem type hai jo tab banta hai jab agent decide karta hai ke mujhe koi tool chalana hai.
+Isme tool ka naam aur arguments (inputs) hote hain.
+🔹 ToolCallOutputItem
+Ye ek OutputItem hai jo tab banta hai jab tool ka result wapas aata hai.
+Isme tool ka naam + uska output/result hota hai.
+ToolCallItem → Request (Agent ne bola: ye tool chalao).
+ToolCallOutputItem → Response (Tool ka jawab: ye result aya).
+🔹 ReasoningItem
+Matlab: jab model internally step-by-step reasoning likhta hai (jo normally user ko nahi dikhai jati), SDK usko ek ReasoningItem me capture kar leta hai.
 
 
 
