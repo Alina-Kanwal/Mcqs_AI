@@ -82,9 +82,10 @@ ye OpenAI ke Responses API ko handle karta hai (jo new aur advanced API hai).
 ye sirf chat nahi, balki text, structured outputs, tool calls sab ko support karta hai. Ye zada flexible hota hy.
 🔹 OpenAIProvider
 ye ModelProvider ki tarah hai lekin specifically OpenAI ke liye., ab agent ko run karte ho aur use kehte ho provider="openai", to wo OpenAIProvider use karega.
-🔹 RunItem -> 
+🔹 RunItem -> run ky darmean process ki info 
+RunItem — jo poore run ka ek container / snapshot hota hai (metadata, input, output, steps, status sab include karta hai).
 ab jab Runner chal raha hota hai, to wo different steps / items bana ke rakhta hai aik item RunItem.
-🔹 RunItemStreamEvent
+🔹 RunItemStreamEvent -> streaming ky doran process ki info
 ab jab Runner chal raha hota hai, to wo different steps / items bana ke rakhta hai:
 ek item ho sakta hai → LLM ka ek partial jawab
 doosra item ho sakta hai → koi tool call jo LLM ne invoke kiya
