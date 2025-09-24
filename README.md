@@ -10,16 +10,20 @@ Agar model 2nd turn pe bhi final answer nahi deta (sirf aur question poochta reh
 By default SDK agents me max_turns = 5 hota hai.
 AgentOutputSchemaBase → skeleton / base.
 AgentOutputSchema → asli output jo agent deta hai
-RunHooks = basically RunHooks ka kaam hai: monitor, log, ya react krna run k har major event pe. ye wo hooks hain jo poory run (execution) k level pr lgty hain — jab tu Runner.run(...) chalati hai. inko use krky tu run ki lifecycle k events pakar skti hai.
+🔹Run_hooks
+run_hooks ek umbrella jesi cheez hai jo ek run ke lifecycle ke events ko capture karti hai. Uske andar different hooks trigger hote hain, jaise:
+on_run_start → jab run shuru hota hai, initialization handle karne ke liye.
+on_run_result → jab poora run complete ho jaye, final result dene ke liye.
+on_tool_call → jab agent koi tool call karta hai.
+on_tool_result → jab tool ka jawab wapas aata hai.
+on_stream_event → jab streaming ke dauran ek chunk ya event emit hota hai.
+on_error → jab run ke dauran error/failure occur ho.
 RunResult =ye ek object hai jo Runner.run(...) k end me return hota hai. isme final outcome hota hai run ka.
 normally isme hota hai:
 output → jo final LLM / agent ne jawab dia
 status → success, error, ya terminated
 steps / turns info → agar detailed tracking on ho
 kabhi kabhi metadata (jaise timings, tokens etc.)
-RunHooks = “listener functions” jo run k dauran chalty hain.
-RunResult = “final report” jo run complete hone k baad milti hai.
-RunResult → final result at the end.
 RunResultStreaming → result milta hai stream k form me, step-by-step / token-by-token.
 FunctionTool se bhi wahi kaam hoga jo @function_tool decorator se hota tha, bs yahan tu manual control le rahi hai. FunctionTool my hum function ko tool bagair decorator lagaye banaty hain.
 🔹FunctionTool
